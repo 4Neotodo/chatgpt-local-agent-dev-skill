@@ -1,0 +1,12 @@
+{
+  "project_name": "Example Project",
+  "repository": "owner/example-project",
+  "default_branch": "main",
+  "integration_branch": "develop/v0.1",
+  "primary_language": "zh-CN",
+  "test_command": "python -m pytest -q",
+  "code_root": "src/",
+  "project_purpose": "Convert verified user inputs into deterministic, versioned outputs through an explicitly governed local application workflow.",
+  "current_status": "Initialization / Planning Review Required",
+  "next_task": "Project-Init-P1-product-scope-and-branch-route-review"
+}
