@@ -1,12 +1,5 @@
-# Minimal configuration example
+# Full Collaboration Example
 
-This configuration generates a single-writer baseline with one optional read-only audit Lane. Replace repository, branch, worktree, validation, purpose, and next-task values with verified project facts before declaring initialization complete.
+This configuration selects `full_collaboration`, the source-locked worktree/Lane/parallel/integration contract. It is the direct successor to the v0.2 minimal example.
 
-```bash
-project-governance-init init \
-  --repo-root /path/to/project \
-  --config examples/minimal/project-governance.json \
-  --dry-run
-```
-
-After generation, run normal and strict checks. Do not use `--force` against existing authoritative files without an approved migration scope.
+Use it when the project needs longer-lived branches, formal worktrees, multiple writers on isolated branches, parallel audits or implementation, shared-resource control, or serial integration of multiple accepted results.

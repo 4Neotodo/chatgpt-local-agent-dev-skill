@@ -1,0 +1,16 @@
+{
+  "governance_profile": "compact_serial",
+  "project_name": "Example Compact Project",
+  "repository": "owner/example-compact-project",
+  "default_branch": "main",
+  "primary_language": "zh-CN",
+  "test_command": "python -m pytest -q",
+  "code_root": "src/",
+  "project_purpose": "Deliver one bounded capability through a serial ChatGPT and local-Agent workflow.",
+  "current_status": "Initialization / Planning Review Required",
+  "next_task": "Compact-Project-P1-scope-contract-and-first-task-capsule",
+  "evidence_root": ".tmp",
+  "local_config_root": ".local",
+  "same_blocker_attempt_budget": 2,
+  "estimated_duration_days": 2
+}

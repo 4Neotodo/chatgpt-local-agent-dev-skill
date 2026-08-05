@@ -1,8 +1,9 @@
 {
+  "governance_profile": "full_collaboration",
   "project_name": "Example Project",
   "repository": "owner/example-project",
   "default_branch": "main",
-  "integration_branch": "develop/v0.1",
+  "integration_branch": "develop/v0.3",
   "primary_language": "zh-CN",
   "test_command": "python -m pytest -q",
   "code_root": "src/",
