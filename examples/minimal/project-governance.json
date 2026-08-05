@@ -6,7 +6,16 @@
   "primary_language": "zh-CN",
   "test_command": "python -m pytest -q",
   "code_root": "src/",
-  "project_purpose": "Convert verified user inputs into deterministic, versioned outputs through an explicitly governed local application workflow.",
+  "project_purpose": "Convert verified user inputs into deterministic, versioned outputs through an explicitly governed remote and local development workflow.",
   "current_status": "Initialization / Planning Review Required",
-  "next_task": "Project-Init-P1-product-scope-and-branch-route-review"
+  "next_task": "Project-Init-P1-product-scope-branch-route-and-governance-confirmation",
+  "formal_worktree_root": "/worktrees/example-project",
+  "auto_worktree_root": "not_applicable",
+  "evidence_root": ".tmp",
+  "local_config_root": ".local",
+  "maximum_active_write_lanes": 1,
+  "maximum_read_only_audit_lanes": 1,
+  "same_blocker_attempt_budget": 2,
+  "total_failed_recovery_budget": 4,
+  "no_progress_checkpoint_budget": 2
 }

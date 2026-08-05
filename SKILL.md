@@ -1,7 +1,7 @@
 ---
 name: project-development-governance
-version: 0.1.0
-description: Initialize or realign a repository for disciplined ChatGPT and local-Agent collaboration by generating top-level governance, planning, version, task-capsule, execution-report, and handoff documents without binding the workflow to a specific local Agent.
+version: 0.2.0
+description: Initialize or realign a repository for source-locked ChatGPT and local-Agent collaboration by generating long-lived governance, branch ownership, task-capsule, parallel-lane, evidence, handoff, integration, and reporting contracts without binding the workflow to one Agent product.
 ---
 
 # Project Development Governance Skill
@@ -10,257 +10,449 @@ description: Initialize or realign a repository for disciplined ChatGPT and loca
 
 Use this skill when a user asks to:
 
-- initialize a new development repository for ChatGPT and local Agent collaboration;
+- initialize a new development repository for remote ChatGPT and local-Agent collaboration;
 - reproduce an established development discipline in another project;
-- generate top-level repository control documents and execution rules;
-- make Codex, Claude Code, Kimi, Gemini CLI, or another local Agent follow the same workflow;
-- replace chat-only conventions with versioned repository rules.
+- replace chat-only instructions with versioned repository authority;
+- define safe remote implementation, local implementation, worktree, parallel-lane, and serial-integration rules;
+- realign an existing repository whose root governance no longer matches actual execution practice;
+- make Codex, Claude Code, Kimi, Gemini CLI, or another authorized Agent follow one common contract.
 
-Do not use it to decide the project's product scope, architecture, business rules, release plan, or technical stack without a separate planning review.
+Do not use this skill to decide product scope, architecture, business rules, technical stack, or release identity without a separate planning review. Do not turn the repository into a general project-management platform, approval service, database-backed workflow engine, or universal policy framework.
 
 ## 2. Outcome
 
-Create a small, explicit governance baseline in the target repository:
+Generate or reconcile a compact governance baseline:
 
-- `README.md`: stable project description and authoritative entry list;
-- `AGENTS.md`: long-lived operating rules for local Agents;
-- `CHATGPT.md`: remote ChatGPT planning and review rules;
-- `PLANS.md`: current route, active branches, and immediate next task;
-- `VERSION_MATRIX.md`: version and artifact identity only;
-- project governance decision;
-- branch task-control template;
-- task-capsule template;
-- planning-review, execution-report, and handoff templates.
+- `README.md`: stable project description and minimum authority entry list;
+- `AGENTS.md`: repository-wide execution rules for any authorized Agent;
+- `CHATGPT.md`: remote planning, remote implementation, orchestration, and review rules;
+- `PLANS.md`: repository route, active long-lived branches, governance limits, and immediate next task;
+- `VERSION_MATRIX.md`: version, formal artifact, and historical identity only;
+- project overview and governance decision;
+- branch task-control, formal task-capsule, and parallel-group templates;
+- planning-review, execution-report, handoff, and integration-report templates;
+- `.project-governance/config.json`: the generated baseline identity and operational limits.
 
-The result must remain project-specific enough to be useful and generic enough to avoid hard-coding one business project or one Agent product.
+The result must be project-specific enough to execute and Agent-brand-neutral enough to reuse. It must not hard-code the source project's business facts, local drive letters, Provider identities, or branch names.
 
-## 3. Required inputs
+## 3. First principles
 
-Resolve before writing:
-
-1. target repository root;
-2. repository identity, such as `owner/name`;
-3. default branch;
-4. active integration or development branch, if one exists;
-5. project name and stable one-paragraph purpose;
-6. primary code root and primary validation command;
-7. whether this is a new repository or an existing repository with authoritative documents.
-
-Use visible placeholders only for minor unknowns. Do not invent product decisions, release identities, branch history, or acceptance evidence.
+1. **Verified repository state outranks remembered chat state.** Current branch, full commit SHA, worktree, ownership, and authoritative files must be checked before current-state claims or writes.
+2. **One branch has one current writer.** Remote and local writers never overlap on the same branch. A model, session, or Agent switch does not create new ownership.
+3. **A task capsule is a narrow execution contract.** It cannot silently change governance, product scope, architecture, specification, branch objective, version identity, or external-call authorization.
+4. **Task type sets responsibility; risk sets proof intensity.** Neither authorizes unrelated changes.
+5. **Execution facts and long-lived decisions stay separate.** Git, tests, task evidence, and reports record one execution. Governance, specifications, plans, and version matrices record durable authority.
+6. **Validation matches actual impact.** Do not mechanically run everything, and do not substitute low-value checks for required real evidence.
+7. **Parallel work is explicit, bounded, and isolated.** Each write Lane has one task, branch, worktree, writer, capsule, and evidence boundary. Integration is serial.
+8. **Retries are evidence-governed.** Rewording, changing models, changing sessions, or repeating an unchanged command does not reset a blocker or budget.
+9. **Human work is limited to genuinely non-substitutable judgment or authorization.** Routine Git, worktree, state, budget, evidence, and integration work belongs to the responsible Agent.
+10. **Governance must remain necessary, simple, and value-positive.** Fix a bad task or ignored rule before adding another permanent rule or tool.
 
 ## 4. Authority order
 
-When operating in an existing repository, apply this order:
+For an existing repository, apply this order:
 
-1. explicit user instruction and approved planning decision;
+1. explicit user authorization and approved planning decision;
 2. current formal governance and specifications;
-3. root `AGENTS.md`, `CHATGPT.md`, `PLANS.md`, and `VERSION_MATRIX.md` according to their stated duties;
-4. current branch task control;
-5. current task capsule;
-6. implementation, tests, Git history, and execution reports as execution facts;
-7. historical documents only when needed to resolve conflict or provenance.
+3. root entries according to their stated duties;
+4. current long-lived branch task control;
+5. current task capsule or parallel-group control;
+6. fixed Git commits, tests, artifacts, and execution reports as execution facts;
+7. historical documents only for provenance, conflict resolution, or historical review.
 
-A task capsule is a single-task execution contract. It cannot silently change higher-level rules.
+A lower-level document cannot silently override a higher-level rule. On material conflict, stop and return to planning review. On branch or source identity conflict, stop immediately under the ownership-conflict state.
 
-## 5. Initialization workflow
+## 5. Collaboration model
 
-### Step 1 — Repository safety gate
+### 5.1 Formal task types
 
-Run in the target repository:
+Every formal task uses one execution type:
+
+- `【规划审查】`: decisions, route, specifications, governance, branch control, task drafting, and closure decisions;
+- `【远端实现】`: explicitly authorized code or document changes by ChatGPT/GitHub on a unique task branch;
+- `【本地执行】`: implementation, deterministic validation, real artifacts, controlled external calls, Git commit/push, and evidence capture in a unique formal worktree;
+- `【并行执行编排】`: Lane allocation, ownership, capacity, shared resources, dependencies, stop rules, and integration order; this type does not itself grant product write permission;
+- `【并行结果集成验收】`: fixed-target, one-at-a-time integration, post-integration validation, competitive-candidate selection, and group closure.
+
+UI, schema, migration, security, and release are scope or risk labels. They do not replace the formal execution type.
+
+### 5.2 Roles
+
+A formal capsule declares all roles and uses `not_applicable` rather than blank values:
+
+- `planning_owner`
+- `parallel_group_owner`
+- `lane_owner`
+- `remote_writer`
+- `local_writer`
+- `validation_owner`
+- `integration_owner`
+- `closure_owner`
+
+Any responsibility that cannot be expressed as one deterministic command must state:
+
+```yaml
+owner:
+trigger:
+required_action:
+evidence:
+pass_condition:
+failure_action:
+```
+
+### 5.3 Human boundary
+
+The user supplies only non-substitutable input such as:
+
+- login, verification code, or external-account authorization;
+- business, visual, device, or real-use acceptance;
+- major product decisions;
+- explicit authorization for merge, deployment, publication, real Provider calls, destructive operations, or other irreversible actions.
+
+The responsible Agent records the human result, binds it to the exact commit or artifact identity, and performs the state transition. Do not assign routine Git, worktree, ownership, retry accounting, integration, or closure work to the user.
+
+## 6. Risk levels
+
+- `L0`: documentation or state correction with no behavior, contract, output, or identity change;
+- `L1`: narrow local correction with no shared contract, schema, business, output, template, or release-identity change;
+- `L2`: shared behavior, business capability, schema, output, foundation, governance, or cross-component contract change;
+- `L3`: release candidate, production delivery, real lifecycle, formal artifact, real external service, device, or user-environment acceptance.
+
+When impact expands, stop scope expansion and obtain an upgraded capsule or planning decision. Do not downgrade shared-contract, business-output, release, or external-service work merely to reduce validation cost.
+
+## 7. Initialization or realignment workflow
+
+### Step 1 — Verify repository identity
+
+Before writing, record:
 
 ```bash
 git branch --show-current
 git status --short
+git worktree list --porcelain
 git remote -v
+git fetch origin --prune
 ```
 
-If the worktree is not clean, stop. Do not switch, stash, commit, delete, or overwrite files unless the task explicitly authorizes handling those exact changes.
+Also verify the relevant remote branch and full source SHA. Do not infer the current head from an old task description.
 
-If a target branch is specified and the worktree is clean:
+If the worktree is dirty or contains unrelated changes, stop. Do not switch, stash, commit, delete, reset, or overwrite those changes. If operating through a remote GitHub writer, use a unique task branch created from the verified source SHA.
 
-```bash
-git fetch origin
-git switch <target-branch>   # only when switching is authorized
-git pull --ff-only
-```
+### Step 2 — Inventory existing authority
 
-Recheck branch and worktree after switching or pulling.
-
-### Step 2 — Existing-document inventory
-
-Check whether the target already has:
-
-```text
-README.md
-AGENTS.md
-CHATGPT.md
-PLANS.md
-VERSION_MATRIX.md
-docs/00_project_overview/
-docs/02_dev_plans/
-docs/03_execution_reports/
-```
-
-Do not overwrite existing authoritative documents merely to make them match templates. Classify each path as:
+Classify each expected path as:
 
 - missing and safe to create;
 - existing and already authoritative;
 - existing but conflicting or unclear;
 - historical and not a current entry.
 
-Conflicting authority requires planning review before replacement.
+Do not overwrite an authoritative file merely to make it match a template. Conflicting authority requires planning review. `--force` is allowed only when replacement of every named path is explicitly authorized and the replacement diff has been reviewed.
 
-### Step 3 — Prepare configuration
+### Step 3 — Prepare verified configuration
 
-Create a JSON file based on `examples/minimal/project-governance.json`. Use verified values. The required field is `project_name`; other unknown values may remain `[待确认]` for the first controlled draft.
+Start from `examples/minimal/project-governance.json`. Confirm at least:
+
+- repository and branch route;
+- project purpose and code root;
+- controlled validation command;
+- formal worktree root, or an explicit `not_applicable` decision;
+- maximum write and read-only audit Lane counts;
+- evidence and local-configuration roots;
+- stop budgets.
+
+Fresh projects default to one active write Lane and one read-only audit Lane. Increase write concurrency only through planning review after ownership, isolation, and serial-integration behavior have been demonstrated.
 
 ### Step 4 — Dry run
-
-Run the installed CLI, or use the zero-install source-checkout entry:
 
 ```bash
 project-governance-init init \
   --repo-root <target-root> \
   --config <config.json> \
   --dry-run
+```
 
-# Equivalent without installation:
+Or from a source checkout without installation:
+
+```bash
 python scripts/project_governance_init.py init \
   --repo-root <target-root> \
   --config <config.json> \
   --dry-run
 ```
 
-Review every planned `created`, `skipped`, or `overwritten` path. `--force` is prohibited unless replacement of the named files is explicitly authorized.
+Review every `created`, `skipped`, `unchanged`, or `overwritten` path. Use `--json` when another Agent needs machine-readable output.
 
-### Step 5 — Generate the baseline
+### Step 5 — Generate missing files
 
-Run the same command without `--dry-run`. The default mode creates missing files and skips existing files.
+Run the same command without `--dry-run`. Default behavior creates missing files and skips existing files. It does not claim that skipped files comply with the new contract.
 
-Then replace project-specific placeholders and write only verified current facts. Keep the document responsibilities separate:
+For an existing repository, compare current authority with the generated v0.2 contract in a separate temporary directory or branch. Convert only approved differences into a reviewed repository change.
 
-- do not put per-run test logs in `PLANS.md`;
-- do not put current task status in `VERSION_MATRIX.md`;
-- do not turn `README.md` into a live task journal;
-- do not duplicate the full governance decision into every file.
+### Step 6 — Replace explicit unknowns
 
-### Step 6 — Validate
+Replace project-specific `[待确认:...]` markers with verified values. Do not invent product decisions, release identities, branch history, worktree paths, owners, or acceptance evidence.
 
-Run:
+Template placeholders such as `[full SHA]` remain intentionally inside task/report templates. Instantiated task capsules and reports must replace every applicable placeholder and use `not_applicable` for unused fields.
+
+### Step 7 — Validate
 
 ```bash
 project-governance-init check --repo-root <target-root>
+project-governance-init check --repo-root <target-root> --strict
 git diff --check
 git diff --stat
 git diff
 ```
 
-Also run any project-specific validation required by the task. A document-only initialization does not automatically require unrelated product tests.
+`check` verifies required paths, UTF-8-readable generated files, contract version, numeric configuration, and unresolved `{{TEMPLATE_TOKEN}}` values. `--strict` also fails on explicit `[待确认]`, `[TODO]`, or `[TBD]` markers. Use `--json` for machine-readable evidence.
 
-### Step 7 — Commit and report
+Run only project validation whose impact is actually triggered. A governance-only initialization does not automatically require unrelated product tests.
 
-Explicitly stage only task files. Do not use unreviewed `git add .`.
+### Step 8 — Commit, push, and review
 
-The completion report must include:
+Explicitly stage only task files. Commit and push the unique task branch. Report:
 
-- repository and target branch;
-- starting and completion commit;
-- created, skipped, and modified files;
+- repository, long-lived target, task branch, and verified source SHA;
+- completed commit and remote push result;
+- changed, created, skipped, and unresolved paths;
 - validation commands and results;
-- whether any existing authority conflict remains;
-- push result and final worktree state;
-- the immediate next planning-review or implementation task.
+- current writer ownership and release state;
+- unresolved authority conflicts;
+- immediate next planning or implementation task.
 
-## 6. Shared collaboration model
+Do not merge or close a higher-level branch merely because generation and tests passed.
 
-### ChatGPT / remote planning side
+## 8. Formal task-capsule minimum contract
 
-Default responsibilities:
+A formal task capsule must include:
 
-- project and branch planning review;
-- scope, architecture, specification, and acceptance decisions;
-- task sequencing and task-capsule drafting;
-- remote governance and plan edits when authorized;
-- review of local Agent execution reports;
-- phase, branch, release, merge, and closure decisions.
+```yaml
+task_id:
+task_type:
+risk_level:
+repository:
+long_lived_target_branch:
+task_branch:
+source_ref:
+source_head:
+parallel_type:
+parallel_group_id:
+lane_id:
+formal_worktree_path:
+external_call_budgets:
+planning_owner:
+parallel_group_owner:
+lane_owner:
+remote_writer:
+local_writer:
+validation_owner:
+integration_owner:
+closure_owner:
+allowed_changes:
+forbidden_changes:
+required_context:
+required_checks:
+acceptance_criteria:
+evidence_paths:
+shared_resources:
+initial_state:
+allowed_terminal_states:
+stop_budgets:
+handoff_contract:
+integration_order:
+final_report_fields:
+```
 
-ChatGPT must not claim local commands, tests, artifacts, or worktree state that it did not verify.
+Rules:
 
-### Local Agent side
+- `source_head` is a full SHA verified immediately before allocation;
+- a write task has one unique task branch and one current writer;
+- a formal local write task has one assigned formal worktree;
+- all call budgets are explicit non-negative integers, never “as needed”;
+- allowed and forbidden changes are concrete;
+- acceptance is observable;
+- unused fields are `not_applicable`, not blank;
+- missing or conflicting required fields produce `INVALID_TASK_CAPSULE` before writing begins.
 
-Default responsibilities:
+## 9. Branch, worktree, and ownership contract
 
-- local code and document edits authorized by the task capsule;
-- environment, dependency, path, and command handling;
-- deterministic tests and real artifact validation;
-- authorized real Provider or external-service calls;
-- Git status, commit, push, and evidence capture;
-- concise execution report and process-blockage assessment.
+### 9.1 One branch, one current writer
 
-The local Agent may identify governance problems but cannot convert its suggestion into a new repository rule without planning review.
+Prohibited:
 
-### User side
+- two remote sessions writing one branch;
+- two local Agents writing one branch;
+- remote and local writers overlapping on one branch;
+- direct parallel writes to a shared parent or integration branch;
+- automatic pull, merge, rebase, reset, or conflict resolution used to absorb unknown movement.
 
-The user is required only where human authority or judgment is necessary, such as:
+A formal write Lane is:
 
-- product and business decisions;
-- visual or device acceptance;
-- acceptance of constraints, risks, cost, or irreversible operations;
-- approval of scope or governance changes.
+```text
+one task
++ one unique branch
++ one formal worktree when local
++ one current writer
++ one task capsule
++ one isolated evidence and acceptance path
+```
 
-## 7. Task types and risk levels
+### 9.2 Source lock
 
-Use task type to assign responsibility; use risk level to set validation and reporting intensity.
+At allocation, record `source_ref` and full `source_head`. Before writing, verify that the expected branch, local head, remote head, worktree occupancy, and ownership record match the capsule. Unknown commits, mismatched SHA, or ambiguous ownership immediately produce:
 
-### Task types
+```text
+PAUSED_BRANCH_OWNERSHIP_CONFLICT
+```
 
-- `【规划审查】`: decisions, route, specifications, branch control, governance, closure;
-- `【本地执行】`: implementation, local validation, artifacts, Git operations;
-- `【UI修改】`: authorized UI edits plus local visual validation;
-- `【版本/发布控制】`: version identity, packaging, lifecycle, and delivery.
+This state does not consume ordinary retry budget.
 
-### Risk levels
+### 9.3 Narrow stale-local-ref exception
 
-- `L0`: documentation or status correction with no behavior or identity change;
-- `L1`: local, low-risk code correction without shared contract or output change;
-- `L2`: shared behavior, business capability, schema, output, or foundation change;
-- `L3`: release candidate, production delivery, real lifecycle, or device acceptance.
+A stale local branch may be aligned only after planning approval and only when all of the following are proven:
 
-When impact expands during execution, stop scope expansion and return to planning review or an explicitly upgraded task.
+- the frozen remote SHA is unchanged;
+- fetch succeeds and the tracking ref equals that SHA;
+- the local branch has no unique commits and is a strict ancestor of the frozen SHA;
+- no worktree has the branch checked out;
+- no Lane state, capsule snapshot, or locks have been created;
+- no unknown writer or unclosed ownership record exists.
 
-## 8. Non-negotiable disciplines
+The only allowed mutation is compare-and-set:
 
-1. Read context from the task's real needs, not from a mechanical full-repository checklist.
-2. Prefer original authoritative text while context remains manageable; summarize only when volume or duplication materially harms execution.
-3. Separate one-time execution facts from long-lived decisions.
-4. Match validation to real impact; neither mechanically run everything nor substitute low-value checks for required evidence.
-5. Keep temporary task evidence under `.tmp/<task-id>/` and local configuration under `.local/` unless the project explicitly defines another boundary.
-6. Never commit secrets, unredacted private data, raw sensitive provider responses, or credentials.
-7. Before real Provider, publication, deletion, migration, or another irreversible action, close the input identity, output path, authorization, retry policy, and stop conditions.
-8. One local-Agent session should complete one independently acceptable task. Do not silently continue into the next phase.
-9. Governance investment must be necessary, simple, and worth its maintenance cost.
+```bash
+git update-ref refs/heads/<branch> <exact-new-sha> <exact-old-sha>
+```
 
-## 9. Stop conditions
+Do not use pull, merge, rebase, reset, checkout, stash, `branch -f`, or force. Compare-and-set failure remains an ownership conflict and does not authorize another mutation.
 
-Stop and report instead of improvising when:
+## 10. States and handoff
 
-- the worktree is dirty or contains unrelated changes;
-- the branch, source commit, or repository identity does not match the task;
-- authoritative documents conflict;
-- required evidence is missing or its provenance cannot be closed;
-- the task requires changing scope, architecture, specification, governance, version identity, or branch objective without approval;
-- a real external call is not explicitly authorized;
-- an existing file would need replacement but `--force` was not approved;
-- the controlled runtime or required dependency is unavailable.
+Supported states include:
 
-## 10. Definition of done
+```text
+ALLOCATED
+REMOTE_WRITING
+REMOTE_READY_FOR_LOCAL_VALIDATION
+LOCAL_WRITING
+WAITING_HUMAN_ACCEPTANCE
+LOCAL_ACCEPTED
+INTEGRATION
+CLOSED
+PAUSED_FOR_PLANNING_REVIEW
+PAUSED_PARALLEL_LANE
+PAUSED_PARALLEL_GROUP
+PAUSED_BRANCH_OWNERSHIP_CONFLICT
+```
 
-Initialization is complete only when:
+Remote-to-local handoff requires:
 
-- required governance entries exist or are explicitly classified as pre-existing authority;
-- roles and document duties do not overlap materially;
-- current route and next task have a single authoritative location;
-- the task-capsule and report templates are usable without reference to this source project;
-- validation passes;
-- the commit and push state are reported;
-- remote ChatGPT can review the repository without relying on hidden chat history.
+1. remote writer commits and pushes;
+2. remote branch head is verified against the completed full SHA;
+3. changed files and remote validation are reported;
+4. remote writer ownership is explicitly released;
+5. local receiver fetches and verifies the exact SHA, clean worktree, branch uniqueness, and ownership record;
+6. local writer then acquires ownership.
+
+The same fixed-SHA release/acquire pattern applies from local execution to remote review or integration. Never transition directly between writers without commit, push, SHA verification, and ownership release.
+
+## 11. Parallel execution and serial integration
+
+Allowed parallel types:
+
+- `independent_long_lived_branch`
+- `child_task_branch`
+- `competitive_attempt`
+- `read_only_audit`
+- `not_applicable`
+
+A parallel group declares capacity, Lane definitions, dependencies, shared resources, group pause triggers, and integration order. Each Lane still has a complete task capsule.
+
+Write results are integrated only after the Lane reaches an accepted state, its commit is pushed and fixed, evidence is complete, and writer ownership is released. A unique `integration_owner` writes the integration target one result at a time and runs impact-matched checks after every step. Competitive attempts select one candidate; do not splice unaccepted candidates together.
+
+A local Lane blocker may pause only that Lane when independent baselines remain trustworthy. Shared-baseline movement, integration-target movement, capacity breach, governance conflict, shared-resource conflict, or cross-Lane evidence contamination pauses the entire group.
+
+## 12. Stop budgets and blocker identity
+
+Default budgets are configurable and begin with:
+
+```yaml
+same_blocker_attempt_budget: 2
+total_failed_recovery_budget: 4
+no_progress_checkpoint_budget: 2
+reset_on_agent_change: false
+reset_on_model_change: false
+reset_on_session_change: false
+```
+
+The retry unit is a concrete blocker fingerprint, not a broad error family. Record at least:
+
+```yaml
+blocker_family:
+error_code:
+normalized_error_signature:
+operation:
+repository_role:
+canonical_repository_path:
+checkpoint_id:
+```
+
+First observation and diagnosis do not automatically consume an attempt. An attempt is consumed only after a material corrective action, rerun of the corresponding checkpoint, new native evidence, and continued failure. Total failed recoveries accumulate across all blockers and do not reset through relabeling, Agent changes, model changes, session changes, or execution-side changes.
+
+Pause when a concrete blocker reaches its attempt limit, total failed recovery reaches its limit, or the configured number of checkpoints produces no new verifiable fact, valid diff, passed gate, or converging blocker.
+
+## 13. Shared resources and irreversible actions
+
+Each shared resource declares:
+
+```yaml
+resource:
+mode: exclusive | serialized | not_applicable
+owner:
+acquire_trigger:
+release_trigger:
+evidence:
+conflict_action:
+```
+
+Typical resources include external-call identity and budget, visual or office-suite validation, formal release artifacts and version numbers, upper-level governance files, the integration target, and the human-acceptance object bound to a commit/artifact.
+
+Before a real Provider call, publication, deletion, migration, deployment, package replacement, credential change, or other irreversible action, close:
+
+- exact input and output identity;
+- external target, model, endpoint, or destination;
+- integer call/action budget;
+- retry, fallback, concurrency, and stop policy;
+- evidence and redaction boundary;
+- explicit authorization.
+
+A failed authorized call does not automatically authorize another call, a parameter change, or fallback.
+
+## 14. Document duties and update triggers
+
+- `README.md`: stable project purpose and navigation;
+- `AGENTS.md`: long-lived execution discipline;
+- `CHATGPT.md`: remote planning, implementation, orchestration, and review discipline;
+- `PLANS.md`: current repository route, active branches, governance limits, and immediate next task;
+- `VERSION_MATRIX.md`: version and formal artifact identity;
+- project governance: durable collaboration contract;
+- branch task control: one long-lived branch objective, boundary, baselines, gates, and next task;
+- task capsule: one execution authorization;
+- parallel-group control: Lane allocation, dependencies, resources, pause rules, and integration order;
+- reports: one review, execution, handoff, or integration fact set.
+
+Do not update plans mechanically because code changed. Update long-lived documents only when their actual route, boundary, status, next-task, specification, governance, version, or identity duty is triggered.
+
+## 15. Definition of done
+
+Initialization or realignment is complete only when:
+
+- required governance entries exist or are explicitly classified as existing authority;
+- project-specific unknown markers are resolved or consciously left as a blocking planning item;
+- task types, roles, source lock, ownership, states, budgets, shared resources, handoff, and integration rules are internally consistent;
+- generated files pass normal and strict checks when declaring completion;
+- no existing authority was overwritten without explicit approval;
+- the task commit is pushed and its full SHA is verified;
+- writer ownership is released or intentionally retained in a declared state;
+- remote ChatGPT and a local Agent can continue from repository authority without hidden chat history.

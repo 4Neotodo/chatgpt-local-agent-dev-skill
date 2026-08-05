@@ -1,46 +1,83 @@
-# Context Handoff — [Project / Branch / Task]
+# Fixed-SHA Handoff — [Project / Branch / Task]
 
-## 1. Repository state
+## 1. Producer state
 
-- Repository: `[owner/name]`
-- Branch: `[branch]`
-- Current remote head: `[full SHA]`
-- Worktree at handoff: `[clean/unknown/not applicable]`
-- Branch/task state: `[state]`
+```yaml
+repository: [owner/name]
+long_lived_target_branch: [branch]
+task_branch: [branch/not_applicable]
+parallel_group_id: [id/not_applicable]
+lane_id: [id/not_applicable]
+producer: [remote_writer/local_writer]
+producer_start_sha: [full SHA]
+completed_commit_sha: [full SHA]
+remote_branch_head_verified: [full SHA]
+push_result: [result]
+writer_ownership_released: [true]
+producer_terminal_state: [REMOTE_READY_FOR_LOCAL_VALIDATION/LOCAL_ACCEPTED/other allowed state]
+formal_worktree_status: [clean/path/not_applicable]
+```
 
-## 2. Current authority
+Do not hand off an abbreviated or unpushed commit. The completed commit, verified remote branch head, and reported SHA must be identical.
 
-1. `[path]`
-2. `[path]`
-3. `AGENTS.md`
-4. `CHATGPT.md`
+## 2. Changed scope and validation
 
-## 3. Completed work
+- Changed files: `[paths]`
+- Core behavior/document change: `[summary]`
+- Producer-side validation: `[commands/results]`
+- Remaining receiver-side validation: `[checks or not_applicable]`
+- Out-of-scope diff: `[none/details]`
 
-- `[task/result/commit]`
+## 3. Current authority
 
-## 4. Current blocker or unresolved decision
+1. `[formal decision/specification]`
+2. `[branch task control]`
+3. `[task capsule]`
+4. `AGENTS.md`
+5. `CHATGPT.md`
 
-`[Separate product-result blocker, execution-process blocker, and non-blocking friction.]`
+## 4. Evidence and artifacts
 
-## 5. Retained local evidence
-
-| Path | Identity | Provenance | Required by | Cleanup condition |
+| Path | Identity | Provenance | Receiver use | Cleanup condition |
 |---|---|---|---|---|
-| `[.tmp/task-id/file]` | `[SHA256/size]` | `[source]` | `[next task]` | `[condition]` |
+| `[path]` | `[SHA256/size/version/full SHA]` | `[source]` | `[purpose]` | `[condition]` |
 
-If none, state `None`.
+Use `None` when no local evidence is retained. Missing or identity-broken evidence blocks the receiver; do not silently regenerate it.
 
-## 6. Immediate next task
+## 5. External calls, resources, and budgets
+
+```yaml
+external_calls_used: [counts]
+stop_budget_usage: [summary]
+shared_resources_released:
+  - [resource/true]
+unresolved_blockers_or_risks:
+  - [risk or none]
+```
+
+## 6. Receiver acquisition gate
+
+```yaml
+receiver: [local_writer/remote reviewer/integration_owner]
+required_action:
+  - fetch the task branch/ref
+  - verify exact remote head equals completed_commit_sha
+  - verify clean and approved worktree when local
+  - verify branch is not occupied by another writer/worktree
+  - verify ownership records and shared resources are released
+pass_condition: all identities and ownership records match exactly
+failure_action: PAUSED_BRANCH_OWNERSHIP_CONFLICT
+```
+
+The receiver acquires writer ownership only after the gate passes. Do not auto-pull, merge, rebase, or absorb a different commit.
+
+## 7. Immediate receiver task
 
 - Task ID: `[id]`
 - Type/risk: `[type] / [level]`
 - Objective: `[one closure]`
 - Required context: `[minimal paths]`
 - Acceptance: `[exact result]`
+- Prohibited continuation: `[do not enter next phase/call Provider/modify frozen files/etc.]`
 
-## 7. Prohibited continuation
-
-- `[do not call Provider / do not enter next phase / do not modify frozen files / do not replace evidence]`
-
-This handoff is a navigation aid. It does not replace formal decisions, branch task control, or the next task capsule.
+This handoff is a fixed-identity transfer record. It does not replace formal governance, branch control, or the receiver's task capsule.

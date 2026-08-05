@@ -1,23 +1,23 @@
-# [Project] — [Branch / Phase] Task Control v0.1
+# [Project] — [Long-Lived Branch / Phase] Task Control v0.1
 
-**Target branch:** `[branch]`  
-**Source branch:** `[branch]`  
-**Source commit:** `[full SHA]`  
-**Current state:** `[Active / Blocked / Pending / Closed]`  
-**Risk level:** `[L0/L1/L2/L3]`  
+**Repository:** `[owner/name]`
+**Long-lived target branch:** `[branch]`
+**Branch source:** `[source ref]`
+**Established source commit:** `[full SHA]`
+**Current state:** `[Active / Pending / Blocked / Closed]`
+**Risk envelope:** `[L0/L1/L2/L3]`
 **Last updated:** `[YYYY-MM-DD]`
 
 ## 1. Document duty
 
-This is the single task-control entry for the named branch. Maintain only:
+This is the single current control entry for the named long-lived branch or phase. Maintain only:
 
-- branch or phase objective and implementation boundary;
-- established long-lived baselines;
-- current valid state;
-- incomplete acceptance gates;
-- immediate next task.
+- independently meaningful branch objective and implementation boundary;
+- established long-lived baselines and formal authority;
+- current valid state, ownership model, and active Lane limits;
+- incomplete acceptance gates, blockers, and immediate next task.
 
-Per-command logs, detailed test output, external-call traces, and temporary evidence belong to Git, test output, `.tmp/<task-id>/`, and execution reports.
+Per-command logs, full test output, individual external calls, temporary evidence, and task-branch details belong to Git, task capsules, `{{EVIDENCE_ROOT}}/<task-id>/`, and reports.
 
 ## 2. Objective
 
@@ -29,7 +29,7 @@ Per-command logs, detailed test output, external-call traces, and temporary evid
 [path]
 ```
 
-State historical or out-of-scope roots explicitly.
+State historical, superseded, or out-of-scope roots explicitly.
 
 ## 4. Approved boundaries
 
@@ -43,49 +43,82 @@ State historical or out-of-scope roots explicitly.
 
 ### Prohibited without planning review
 
-- product scope, architecture, formal specification, support boundary, branch objective, governance, or version identity change;
-- unrelated refactor or cleanup;
-- unauthorized external call, retry, fallback, merge, rebase, release, deletion, or artifact replacement.
+- product scope, architecture, formal specification, support boundary, branch objective, governance, stop budget, Lane limit, or version identity change;
+- unrelated refactor, cleanup, dependency upgrade, or historical rewrite;
+- unauthorized external call, retry, fallback, merge, rebase, release, deployment, deletion, migration, or artifact replacement.
 
-## 5. Established baselines
+## 5. Branch ownership and execution model
 
-- `[baseline, authority, version, and identity]`
+```yaml
+long_lived_target_branch: [branch]
+integration_owner: [owner or not_applicable]
+maximum_active_write_lanes: [integer]
+maximum_read_only_audit_lanes: [integer]
+formal_worktree_root: [path or not_applicable]
+current_target_writer: not_applicable
+```
 
-## 6. Completed milestones
+The long-lived target is not a shared parallel write branch. Child work uses unique task branches and, when local, unique formal worktrees. Integration is one result at a time by the named owner.
 
-| ID | Result | Evidence | State |
+## 6. Established baselines
+
+| Baseline | Authority/version | Identity | State |
 |---|---|---|---|
-| `[task-id]` | `[summary]` | `[commit/test/artifact]` | Complete |
+| `[baseline]` | `[path/version]` | `[full SHA/hash/artifact]` | `[current/superseded]` |
 
-## 7. Remaining gates
+## 7. Completed milestones
 
-| Gate | Acceptance | State |
-|---|---|---|
-| `[gate]` | `[observable condition]` | Pending |
+| Task ID | Result | Commit/evidence | State |
+|---|---|---|---|
+| `[task-id]` | `[summary]` | `[full SHA/test/artifact]` | Complete |
 
-## 8. Current blocker or risk
+## 8. Active task branches and Lanes
 
-`[Separate product-result blocker, execution-process blocker, and non-blocking friction.]`
+| Task/Lane | Task branch | Source SHA | Writer | Worktree | State | Integration readiness |
+|---|---|---|---|---|---|---|
+| `[task-id / lane-id]` | `[branch]` | `[full SHA]` | `[owner/not_applicable]` | `[path/not_applicable]` | `[state]` | `[not_ready/ready/not_applicable]` |
 
-## 9. Immediate next task
+Do not use this table as a substitute for the full task capsule or parallel-group control.
+
+## 9. Remaining gates
+
+| Gate | Acceptance | Owner | State |
+|---|---|---|---|
+| `[gate]` | `[observable condition]` | `[owner]` | Pending |
+
+## 10. Current blocker or risk
+
+Separate:
+
+- product/result blocker;
+- execution-process blocker;
+- non-blocking friction;
+- branch/source/ownership conflict;
+- group-level shared-baseline or shared-resource risk.
+
+Record only current durable status. Detailed blocker attempts and evidence belong to the active task report/state.
+
+## 11. Immediate next task
 
 ```text
 [task-id]
 ```
 
-Task type: `[【规划审查】/【本地执行】/【UI修改】/【版本/发布控制】]`  
+Task type: `[【规划审查】/【远端实现】/【本地执行】/【并行执行编排】/【并行结果集成验收】]`
 Risk: `[L0/L1/L2/L3]`
+Source ref/head: `[ref] / [full SHA or must verify immediately before allocation]`
 
-`[One-task objective and strict boundary.]`
+`[One independently acceptable objective and strict boundary.]`
 
-## 10. Authoritative entries
+## 12. Authoritative entries
 
 1. `[formal decision/specification]`
-2. `[repository plan]`
+2. `PLANS.md`
 3. `[this branch control]`
-4. `AGENTS.md`
-5. `CHATGPT.md`
+4. `docs/00_project_overview/PROJECT_GOVERNANCE.md`
+5. `AGENTS.md`
+6. `CHATGPT.md`
 
-## 11. Update triggers
+## 13. Update triggers
 
-Update only when branch objective, boundary, established baseline, gate state, blocker, or immediate next task changes. Do not append execution diaries.
+Update only when branch objective, boundary, established baseline, active route, gate state, current durable blocker, ownership model, Lane limit, or immediate next task changes. Do not append execution diaries.

@@ -1,34 +1,36 @@
 # {{PROJECT_NAME}} — Project Overview
 
-**Repository:** `{{REPOSITORY}}`  
-**Document status:** Initialization draft  
+**Repository:** `{{REPOSITORY}}`
 **Created:** {{CREATED_DATE}}
+**Primary language:** `{{PRIMARY_LANGUAGE}}`
 
 ## 1. Stable purpose
 
 {{PROJECT_PURPOSE}}
 
-## 2. Users and success criteria
-
-`[待规划审查：说明目标用户、核心问题、可观察成功结果，以及明确不属于当前范围的事项。]`
-
-## 3. Product and technical boundary
-
-`[待规划审查：说明主要输入、处理、输出、运行环境、外部依赖和不变约束。]`
-
-## 4. Current route
+## 2. Repository route
 
 - Default branch: `{{DEFAULT_BRANCH}}`
 - Integration/development branch: `{{INTEGRATION_BRANCH}}`
 - Primary code root: `{{CODE_ROOT}}`
-- Primary validation: `{{TEST_COMMAND}}`
+- Primary validation command: `{{TEST_COMMAND}}`
 
-Detailed current route and immediate next task belong to `PLANS.md`. Version and artifact identity belong to `VERSION_MATRIX.md`.
+## 3. Collaboration model
 
-## 5. Authoritative specifications
+The project uses source-locked task branches, one current writer per branch, formal local worktrees, explicit task capsules, impact-matched validation, full-SHA handoff, bounded parallel Lanes, and serial integration.
 
-`[待规划审查：列出正式产品、架构、接口、业务或机器规格。不要把实现文件或历史测试自动视为规格。]`
+Remote ChatGPT may plan, review, orchestrate, integrate, or perform explicitly authorized remote implementation. Authorized local Agents execute only within the assigned branch, worktree, scope, call budget, and acceptance contract.
 
-## 6. Explicit non-goals
+## 4. Product and technical scope
 
-`[待规划审查：记录为控制复杂度而明确排除的功能、兼容路径、平台和低概率场景。]`
+Document the actual product inputs, outputs, users, technical roots, support boundary, and exclusions through planning review. Do not derive them from these governance templates.
+
+## 5. Current authority
+
+1. `README.md`
+2. `docs/00_project_overview/PROJECT_GOVERNANCE.md`
+3. `PLANS.md`
+4. active branch task control
+5. formal specifications and accepted task evidence
+
+Historical plans, old reports, and previous chats are not default current authority.

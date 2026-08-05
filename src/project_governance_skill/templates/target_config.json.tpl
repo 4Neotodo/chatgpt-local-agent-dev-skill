@@ -1,4 +1,5 @@
 {
+  "governance_contract_version": "{{GOVERNANCE_CONTRACT_VERSION}}",
   "project_name": "{{PROJECT_NAME}}",
   "repository": "{{REPOSITORY}}",
   "default_branch": "{{DEFAULT_BRANCH}}",
@@ -9,5 +10,14 @@
   "project_purpose": "{{PROJECT_PURPOSE}}",
   "current_status": "{{CURRENT_STATUS}}",
   "next_task": "{{NEXT_TASK}}",
+  "formal_worktree_root": "{{FORMAL_WORKTREE_ROOT}}",
+  "auto_worktree_root": "{{AUTO_WORKTREE_ROOT}}",
+  "evidence_root": "{{EVIDENCE_ROOT}}",
+  "local_config_root": "{{LOCAL_CONFIG_ROOT}}",
+  "maximum_active_write_lanes": {{MAXIMUM_ACTIVE_WRITE_LANES}},
+  "maximum_read_only_audit_lanes": {{MAXIMUM_READ_ONLY_AUDIT_LANES}},
+  "same_blocker_attempt_budget": {{SAME_BLOCKER_ATTEMPT_BUDGET}},
+  "total_failed_recovery_budget": {{TOTAL_FAILED_RECOVERY_BUDGET}},
+  "no_progress_checkpoint_budget": {{NO_PROGRESS_CHECKPOINT_BUDGET}},
   "created_date": "{{CREATED_DATE}}"
 }

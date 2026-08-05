@@ -2,37 +2,49 @@
 
 {{PROJECT_PURPOSE}}
 
-## Current status
+## Stable authority entries
 
-`{{CURRENT_STATUS}}`
+| Entry | Duty |
+|---|---|
+| `README.md` | Stable project purpose and minimum navigation |
+| `docs/00_project_overview/PROJECT_OVERVIEW.md` | Product and repository overview |
+| `docs/00_project_overview/PROJECT_GOVERNANCE.md` | Remote/local collaboration, ownership, worktree, Lane, state, budget, and integration contract |
+| `AGENTS.md` | Long-lived execution rules for any authorized Agent |
+| `CHATGPT.md` | Remote planning, remote implementation, orchestration, and review rules |
+| `PLANS.md` | Current repository route, active long-lived branches, governance limits, and immediate next task |
+| `VERSION_MATRIX.md` | Formal version, artifact, and historical identity |
+| active branch task control | One long-lived branch objective, boundary, baselines, gates, and next task |
+| task capsule | One execution authorization and acceptance contract |
+| reports | One planning, execution, handoff, or integration fact set |
 
-Repository: `{{REPOSITORY}}`  
-Default branch: `{{DEFAULT_BRANCH}}`  
-Integration/development branch: `{{INTEGRATION_BRANCH}}`
+Do not infer current state from chat history alone. Verify the repository, branch, full commit SHA, worktree, ownership, and directly relevant authority before writing or making current-state claims.
 
-## Authoritative entries
-
-1. Stable project overview: `docs/00_project_overview/PROJECT_OVERVIEW.md`
-2. Shared governance decision: `docs/00_project_overview/PROJECT_GOVERNANCE.md`
-3. Local Agent execution rules: `AGENTS.md`
-4. ChatGPT planning and review rules: `CHATGPT.md`
-5. Current route and next task: `PLANS.md`
-6. Version and artifact identity: `VERSION_MATRIX.md`
-7. Branch task controls: `docs/02_dev_plans/`
-8. Execution evidence and reports: Git history, test output, `.tmp/<task-id>/`, and `docs/03_execution_reports/` when a retained report is required
-
-Do not use historical plans, old branches, temporary summaries, implementation snapshots, or previous chat messages as the default current authority.
-
-## Development model
+## Collaboration lifecycle
 
 ```text
-approved project direction and formal decisions
-→ ChatGPT planning review and task capsule
-→ local Agent implementation, validation, commit, push, and report
-→ ChatGPT evidence review and next-task or closure decision
-→ user review only where business, visual, device, cost, risk, or irreversible authority is required
+planning review / allocation
+→ fixed source_ref + source_head
+→ unique task branch and current writer
+→ remote implementation or formal local-worktree execution
+→ validation, commit, push, and full-SHA verification
+→ writer ownership release
+→ local or human acceptance
+→ serial integration by the unique integration owner
+→ closure, evidence registration, and worktree cleanup
 ```
 
-Primary code root: `{{CODE_ROOT}}`  
-Primary validation command: `{{TEST_COMMAND}}`  
-Primary documentation language: `{{PRIMARY_LANGUAGE}}`
+One branch has one current writer. Remote and local writers do not overlap. Unknown branch movement is not absorbed through automatic pull, merge, or rebase.
+
+## Repository identity
+
+- Repository: `{{REPOSITORY}}`
+- Default branch: `{{DEFAULT_BRANCH}}`
+- Integration/development branch: `{{INTEGRATION_BRANCH}}`
+- Primary code root: `{{CODE_ROOT}}`
+- Primary validation: `{{TEST_COMMAND}}`
+- Formal worktree root: `{{FORMAL_WORKTREE_ROOT}}`
+- Governance contract: `{{GOVERNANCE_CONTRACT_VERSION}}`
+
+## Current route
+
+See `PLANS.md`. Keep per-run commands, logs, and temporary evidence out of this file.
