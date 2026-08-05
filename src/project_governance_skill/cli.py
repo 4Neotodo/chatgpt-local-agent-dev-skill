@@ -7,6 +7,7 @@ import sys
 
 from .generator import (
     ConfigurationError,
+    SUPPORTED_GOVERNANCE_PROFILES,
     check_repository,
     format_results,
     generate,
@@ -17,13 +18,17 @@ from .generator import (
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="project-governance-init",
-        description="Generate and check a ChatGPT and local-Agent project governance baseline.",
+        description=(
+            "Generate and check a compact-serial or full-collaboration "
+            "ChatGPT and local-Agent governance baseline."
+        ),
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     init_parser = subparsers.add_parser("init", help="Generate missing governance files")
     init_parser.add_argument("--repo-root", required=True, type=Path)
     init_parser.add_argument("--config", type=Path)
+    init_parser.add_argument("--profile", choices=SUPPORTED_GOVERNANCE_PROFILES)
     init_parser.add_argument("--project-name")
     init_parser.add_argument("--repository")
     init_parser.add_argument("--default-branch")
@@ -43,6 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     init_parser.add_argument("--same-blocker-attempt-budget", type=int)
     init_parser.add_argument("--total-failed-recovery-budget", type=int)
     init_parser.add_argument("--no-progress-checkpoint-budget", type=int)
+    init_parser.add_argument("--estimated-duration-days", type=int)
     init_parser.add_argument(
         "--force",
         action="store_true",
@@ -62,9 +68,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     check_parser = subparsers.add_parser(
         "check",
-        help="Check required paths, contract version, and unresolved markers",
+        help="Check profile paths, contract version, configuration, and unresolved markers",
     )
     check_parser.add_argument("--repo-root", required=True, type=Path)
+    check_parser.add_argument("--profile", choices=SUPPORTED_GOVERNANCE_PROFILES)
     check_parser.add_argument(
         "--strict",
         action="store_true",
@@ -86,6 +93,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "init":
             overrides = {
+                "governance_profile": args.profile,
                 "project_name": args.project_name,
                 "repository": args.repository,
                 "default_branch": args.default_branch,
@@ -105,6 +113,7 @@ def main(argv: list[str] | None = None) -> int:
                 "same_blocker_attempt_budget": args.same_blocker_attempt_budget,
                 "total_failed_recovery_budget": args.total_failed_recovery_budget,
                 "no_progress_checkpoint_budget": args.no_progress_checkpoint_budget,
+                "estimated_duration_days": args.estimated_duration_days,
             }
             config = load_config(args.config, overrides)
             results = generate(
@@ -119,6 +128,7 @@ def main(argv: list[str] | None = None) -> int:
                         {
                             "dry_run": args.dry_run,
                             "force": args.force,
+                            "profile": config["governance_profile"],
                             "results": [item.__dict__ for item in results],
                         },
                         ensure_ascii=False,
@@ -129,7 +139,11 @@ def main(argv: list[str] | None = None) -> int:
                 print(format_results(results))
             return 0
 
-        report = check_repository(args.repo_root, strict=args.strict)
+        report = check_repository(
+            args.repo_root,
+            strict=args.strict,
+            profile=args.profile,
+        )
         if args.json_output:
             print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
         else:
@@ -141,13 +155,14 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _print_check_report(report: object) -> None:
-    # Kept separate so CLI output remains stable and easy for local Agents to parse.
     missing = getattr(report, "missing")
     unresolved = getattr(report, "unresolved_template_tokens")
     unconfirmed = getattr(report, "unconfirmed_markers")
     config_errors = getattr(report, "config_errors")
+    profile_errors = getattr(report, "profile_errors")
     strict = getattr(report, "strict")
     passed = getattr(report, "passed")
+    profile = getattr(report, "profile")
 
     if missing:
         print("Missing required governance paths:", file=sys.stderr)
@@ -161,6 +176,10 @@ def _print_check_report(report: object) -> None:
         print("Configuration errors:", file=sys.stderr)
         for error in config_errors:
             print(f"- {error}", file=sys.stderr)
+    if profile_errors:
+        print("Profile errors:", file=sys.stderr)
+        for error in profile_errors:
+            print(f"- {error}", file=sys.stderr)
     if strict and unconfirmed:
         print("Files with explicit unconfirmed markers:", file=sys.stderr)
         for path in unconfirmed:
@@ -169,12 +188,12 @@ def _print_check_report(report: object) -> None:
     if passed:
         if unconfirmed and not strict:
             print(
-                "Governance baseline check passed; "
+                f"Governance baseline check passed for {profile}; "
                 f"{len(unconfirmed)} file(s) still contain explicit unconfirmed markers. "
                 "Use --strict before declaring initialization complete."
             )
         else:
-            print("Governance baseline check passed")
+            print(f"Governance baseline check passed for {profile}")
 
 
 if __name__ == "__main__":

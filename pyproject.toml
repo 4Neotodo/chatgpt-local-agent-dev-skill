@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chatgpt-local-agent-dev-skill"
-version = "0.2.0"
-description = "Generate a source-locked ChatGPT and local-Agent collaboration governance baseline."
+version = "0.3.0"
+description = "Generate compact-serial or full-collaboration ChatGPT and local-Agent governance baselines."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "4Neotodo" }]

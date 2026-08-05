@@ -15,7 +15,7 @@ def test_release_versions_are_aligned() -> None:
     match = re.search(r"^version:\s*([^\s]+)$", skill, flags=re.MULTILINE)
 
     assert match is not None
-    assert pyproject["project"]["version"] == "0.2.0"
-    assert __version__ == "0.2.0"
-    assert GOVERNANCE_CONTRACT_VERSION == "0.2.0"
-    assert match.group(1) == "0.2.0"
+    assert pyproject["project"]["version"] == "0.3.0"
+    assert __version__ == "0.3.0"
+    assert GOVERNANCE_CONTRACT_VERSION == "0.3.0"
+    assert match.group(1) == "0.3.0"

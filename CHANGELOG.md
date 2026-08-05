@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 — 2026-08-05
+
+- Added two first-class governance profiles in one package: `compact_serial` and `full_collaboration`.
+- Added a seven-file compact baseline for one-to-three-day, single-repository, single-writer projects with no planned parallelism or multi-result integration.
+- Preserved shared source verification, one-branch/one-writer ownership, narrow task capsules, impact-matched validation, external-action budgets, fixed-SHA writer transfer, evidence, and blocker stop rules in compact form.
+- Added compact project-control, task-capsule, execution-report, `AGENTS.md`, `CHATGPT.md`, and `PLANS.md` templates without introducing formal worktree, Lane, parallel-group, or integration-report requirements.
+- Added `governance_profile` and `estimated_duration_days`, profile-specific persisted configuration, and structural compact constraints.
+- Added `--profile` to `init` and `check`; JSON output now reports the effective profile.
+- Added profile-aware required-path checks, compact marker validation, full/compact shared-authority mismatch detection, and compact rejection of parallel-group/integration-report paths.
+- Added reviewed compact-to-full migration semantics and prohibited automatic full-to-compact downgrade.
+- Preserved compatibility for `0.2.0` configs without `governance_profile` by interpreting them as legacy `full_collaboration`.
+- Retained `TEMPLATE_MAP`, `DEFAULTS`, and `PERSISTED_KEYS` as full-profile compatibility exports.
+- Expanded tests to cover both profiles, CLI selection, strict checks, persisted schemas, migration conflicts, compact constraints, and legacy v0.2 validation.
+
 ## 0.2.0 — 2026-08-05
 
 - Upgraded the collaboration contract from a local-execution initializer to a source-locked remote/local governance model.
