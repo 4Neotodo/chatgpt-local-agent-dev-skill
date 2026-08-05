@@ -2,152 +2,266 @@
 
 ## 1. Purpose
 
-This is the repository-level long-term operating entry for any local development Agent working in `{{PROJECT_NAME}}`. It is Agent-brand-neutral and applies to Codex, Claude Code, Kimi, Gemini CLI, or another authorized local Agent.
+This is the repository-level long-term operating entry for every authorized Agent working in `{{PROJECT_NAME}}`, including remote ChatGPT, Codex, Claude Code, Kimi, Gemini CLI, or another local/remote Agent.
 
-Do not rely on chat history alone. Do not treat a historical branch, sample, implementation, test, or report as the repository's permanent current state.
+Do not rely on chat history alone. Do not treat a historical branch, sample, implementation, test, artifact, or report as the repository's permanent current state.
 
-## 2. Authority and context selection
+Current collaboration authority:
 
-Before execution, use this order:
+- `docs/00_project_overview/PROJECT_GOVERNANCE.md`;
+- `docs/02_dev_plans/TASK_CAPSULE_TEMPLATE.md`;
+- `docs/02_dev_plans/PARALLEL_GROUP_CONTROL_TEMPLATE.md`.
 
-1. inspect the actual repository, branch, and worktree;
-2. read the explicit user instruction or current task capsule;
-3. locate the target branch task control or directly corresponding plan;
-4. decide what the current task actually needs to understand or decide;
-5. read directly related formal decisions, specifications, code, tests, and assets;
-6. read historical material only to resolve conflict, provenance, or an explicitly historical task.
+## 2. Context selection and authority
 
-Do not mechanically require every task to read `README.md`, `PLANS.md`, `VERSION_MATRIX.md`, all specifications, and all history. Use original authoritative text while context remains manageable. Create or use a sourced temporary context summary only when volume, distribution, or repetition materially harms execution quality or efficiency.
+Before execution:
 
-Repository entry duties:
+1. verify repository, remote, actual branch, full HEAD, worktree, and ownership state;
+2. read the explicit user authorization and current task capsule;
+3. locate the long-lived target branch task control or directly corresponding plan;
+4. determine what the task actually needs to understand and decide;
+5. read directly relevant formal decisions, specifications, code, tests, and assets;
+6. read history only to resolve conflict, provenance, or an explicitly historical question.
 
-- `README.md`: stable project description and minimum entry list;
-- `CHATGPT.md`: remote planning and review discipline;
-- `PLANS.md`: current route, active branches, and immediate next task;
-- `VERSION_MATRIX.md`: version, formal asset, and historical delivery identity;
-- branch task control: current branch objective, boundary, status, gates, and next task;
-- formal decisions and specifications: product, architecture, and behavior authority;
-- Git, tests, artifacts, and reports: one execution's facts.
+Do not mechanically require every task to read `README.md`, `PLANS.md`, `VERSION_MATRIX.md`, every specification, and every prior report. Prefer original authority while context is manageable. A sourced summary may assist when volume or duplication materially harms execution, but it does not replace authority.
 
-## 3. Roles and task types
+Entry duties:
 
-| Task type | Default execution side | Default writable scope |
+- `README.md`: stable project description and minimum navigation;
+- `CHATGPT.md`: remote planning, implementation, orchestration, and review discipline;
+- `PLANS.md`: current repository route, active long-lived branches, governance limits, and immediate next task;
+- `VERSION_MATRIX.md`: formal version, artifact, and historical identity;
+- project governance: collaboration, ownership, worktree, Lane, state, budget, and integration contract;
+- branch task control: one long-lived branch objective, boundary, baselines, gates, and next task;
+- task capsule: one execution authorization;
+- Git, tests, artifacts, evidence, and reports: one execution's facts.
+
+A lower-level capsule cannot silently change a higher-level decision. Material conflict requires planning review. Source or branch ownership conflict requires immediate pause.
+
+## 3. Formal task types
+
+| Task type | Default execution side | Writable scope |
 |---|---|---|
-| `【规划审查】` | ChatGPT / GitHub | decisions, plans, branch control, governance, and necessary indexes |
-| `【本地执行】` | authorized local Agent | capsule-authorized code, tests, assets, and triggered plan updates |
-| `【UI修改】` | authorized remote or local edit plus local visual validation | named UI files, related tests, and necessary UI specifications |
-| `【版本/发布控制】` | task-defined | version matrix, release record, package, lifecycle, and delivery evidence |
-| Schema or shared contract change | planning approval required | explicitly authorized contract, specification, implementation, and tests |
+| `【规划审查】` | ChatGPT / GitHub | decisions, plans, specifications, governance, branch control, task drafting, and necessary indexes; remote writes only when authorized |
+| `【远端实现】` | ChatGPT / GitHub | one unique task branch and explicitly listed code or document paths |
+| `【本地执行】` | authorized local Agent | one assigned formal worktree and capsule-authorized code, tests, assets, evidence, and triggered documents |
+| `【并行执行编排】` | ChatGPT or named orchestrator | group/Lane allocation, ownership, capacity, shared resources, pause rules, and integration order; no implicit product write scope |
+| `【并行结果集成验收】` | unique integration owner | one fixed integration target, accepted Lane commits, post-step validation, and closure |
 
-Task type assigns responsibility. Risk level assigns validation and reporting intensity. Neither authorizes unrelated file changes.
+UI, schema, migration, security, and release are labels, not substitutes for a formal execution type.
 
-The task capsule is subordinate to formal decisions, this file, `CHATGPT.md`, and branch task control. On conflict, stop and report. Only an explicit user or approved planning-review exception written into the capsule may override a named rule.
+The formal capsule must include all required roles. Unused roles and fields are `not_applicable`, not blank. Missing or contradictory required fields return:
+
+```text
+INVALID_TASK_CAPSULE
+```
 
 ## 4. Risk levels
 
 ### L0 — Documentation or state correction
 
-No product, specification, code behavior, output semantics, or version identity change.
-
-Minimum requirements:
+No product behavior, shared contract, output semantics, schema, template, or version identity change.
 
 - modify only target documents;
-- check anchors, links, status, placeholders, and final diff;
+- verify anchors, links, states, markers, and final diff;
 - do not run unrelated product tests;
-- update other entries only when route, identity, or long-term conclusion actually changes.
+- update other entries only when their duty is genuinely triggered.
 
-### L1 — Low-risk local correction
+### L1 — Narrow local correction
 
-Narrow impact with no shared contract, business rule, output semantics, schema, template, or release identity change.
+No shared contract, business rule, output semantics, schema, template, or release identity change.
 
-Minimum requirements:
-
-- deterministic reproduction or direct tests;
-- small, relevant regression set when needed;
+- deterministic reproduction/direct tests;
+- necessary small regression only;
 - no release packaging, full lifecycle, or device acceptance;
-- no mechanical plan update merely because code changed;
-- no separate ceremonial closure task after passing acceptance and push.
+- no ceremonial closure task after acceptance and push.
 
 ### L2 — Shared behavior, capability, or foundation change
 
-Shared modules, business behavior, validation, output, schema, template, or cross-component contract.
+Shared module, business behavior, schema, validation, output, template, foundation, governance, or cross-component contract.
 
-Minimum requirements:
+- direct tests and impact-matched regression;
+- applicable real sample, file, visual, or integration evidence;
+- update durable documents only when their trigger occurs;
+- do not perform L3 work unless explicitly upgraded.
 
-- direct tests plus impact-matched regression;
-- real sample, file, visual, or integration evidence when applicable;
-- update long-lived documents only when their trigger conditions are met;
-- do not perform L3 release work unless explicitly upgraded.
+### L3 — Release candidate or formal delivery
 
-### L3 — Release candidate or delivery
+Formal artifact, release, production lifecycle, real Provider/external service, device, or user-environment acceptance.
 
-Release package, production delivery, real lifecycle, external Provider, user environment, or device acceptance.
+Apply the task-required combination of packaging closure, artifact size/SHA256/source commit, install/update/uninstall lifecycle, production path, real external call, device/user acceptance, release note, and version-matrix update.
 
-Apply the task-required combination of:
-
-- packaging closure and blocker audit;
-- artifact size, SHA256, source commit, and version identity;
-- install, configure, start, update, and uninstall lifecycle;
-- real Provider, production path, real sample, device, or user acceptance;
-- release notes and version-matrix update.
-
-L3 controls must not be indiscriminately imposed on L0–L2.
-
-If risk is unclear, choose the higher plausible level and explain. If impact expands during execution, stop expansion and return to planning review or an explicitly upgraded capsule.
+If impact expands, stop scope expansion and request an upgraded capsule or planning review. Do not downgrade shared-contract, business-output, or release work to reduce validation cost.
 
 ## 5. Required execution order
 
 Every task must:
 
-1. check repository, branch, and worktree;
-2. confirm the task belongs to the target branch route or has explicit authorization;
-3. confirm task type, risk, allowed scope, prohibited actions, and stop conditions;
-4. read and modify only what the task directly needs;
-5. preserve formal specification and schema semantics unless modification is authorized;
-6. run the smallest validation set that fully proves the real impact;
-7. update plans, specifications, versions, or branch status only when a trigger is met;
-8. report according to risk level.
+1. verify repository, target route, remote source ref and full SHA;
+2. verify task branch, worktree, current writer, Lane, and clean state;
+3. confirm task type, risk, owners, allowed scope, forbidden scope, call budgets, shared resources, acceptance, and stop budgets;
+4. read and modify only directly required files;
+5. preserve formal specification and schema semantics unless change is authorized;
+6. run the smallest validation set that fully proves actual impact;
+7. update plans/specifications/governance/version only when a real trigger occurs;
+8. commit and push only the task branch, verify full remote SHA, and release or hand off writer ownership;
+9. report according to task type and risk;
+10. do not continue into the next task or phase unless the capsule explicitly combines that exact closure.
 
-When product scope, architecture, formal specification, support boundary, repository governance, branch objective, or version identity must change, stop implementation expansion and request `【规划审查】`.
+Changing product scope, architecture, formal specification, support boundary, governance, long-lived branch objective, stop budget, Lane ceiling, or version identity requires `【规划审查】`.
 
-## 6. Git safety discipline
+## 6. Git, branch, and worktree safety
 
-At local-task start:
+### 6.1 Start gate
+
+Before local edits:
 
 ```bash
 git branch --show-current
 git status --short
+git worktree list --porcelain
+git fetch origin --prune
 ```
 
-Routing:
+Required facts:
 
-- already on target branch and clean: `git fetch origin`, then `git pull --ff-only`;
-- not on target branch and clean: fetch, switch only when authorized, then `git pull --ff-only`;
-- dirty worktree: stop immediately; do not switch, stash, commit, delete, or modify files.
+- current repository and task branch match the capsule;
+- task-branch HEAD equals the capsule's fixed `source_head` or accepted handoff SHA;
+- worktree is clean;
+- branch is not checked out by another worktree;
+- writer ownership is unique and consistent;
+- capacity and shared-resource rules permit execution.
 
-Recheck branch and worktree after switch or pull. The branch must equal the target, the worktree must be clean, and fast-forward pull must succeed before edits.
+Do not use generic `git pull` as the identity gate. The capsule must define exact source relation and allowed synchronization. Stop on unrelated changes; do not switch, stash, reset, commit, delete, merge, rebase, or rewrite another writer's state.
 
-Additional rules:
+### 6.2 One branch, one writer
 
-1. pull, commit, and push only the capsule's target branch;
-2. push only to `origin/<target-branch>` unless cross-branch action is explicitly authorized;
-3. explicitly stage task files; do not use unreviewed `git add .`;
-4. stop on unrelated changes;
-5. do not auto-stash, merge, rebase, change remote, or rewrite credentials;
-6. long-lived branch creation, cross-branch synchronization, merge, and closure require approved source, target, and scope;
-7. temporary evidence belongs under `.tmp/<task-id>/`; explicit local configuration belongs under `.local/` unless the task defines another boundary;
-8. report target branch, starting and completion commit, push result, and final worktree state.
+Prohibited:
 
-## 7. Validation discipline
+- two remote sessions writing one branch;
+- two local Agents writing one branch;
+- remote and local writers overlapping;
+- parallel child tasks writing the shared parent/integration branch;
+- automatic pull/merge/rebase/conflict resolution used to absorb unknown movement;
+- an implementation Agent integrating its own result by default.
 
-Validation must match real impact. Do not mechanically run the entire repository, and do not substitute a low-value check for required real execution.
+A formal write Lane is one task + one unique task branch + one formal worktree when local + one current writer + one complete capsule + one isolated evidence/acceptance path.
 
-- L0: target text, anchors, links, status, placeholders, and final diff;
-- L1: deterministic reproduction, direct tests, and necessary small regression;
-- L2: direct tests, necessary regression, and applicable real sample/file/visual evidence;
-- L3: L2 plus release closure, artifact identity, lifecycle, Provider, device, or user acceptance.
+Unknown commits, mismatched SHA, ambiguous ownership, or unexpected worktree occupancy immediately return:
 
-Primary repository validation command:
+```text
+PAUSED_BRANCH_OWNERSHIP_CONFLICT
+```
+
+Do not spend ordinary retry budget on identity conflicts.
+
+### 6.3 Formal worktree rules
+
+```yaml
+formal_worktree_root: {{FORMAL_WORKTREE_ROOT}}
+auto_worktree_root: {{AUTO_WORKTREE_ROOT}}
+maximum_active_write_lanes: {{MAXIMUM_ACTIVE_WRITE_LANES}}
+maximum_read_only_audit_lanes: {{MAXIMUM_READ_ONLY_AUDIT_LANES}}
+```
+
+- formal local writes use the assigned path under the approved formal root;
+- automatically managed worktree retention does not grant formal write concurrency;
+- do not create clone/worktree paths outside approved roots;
+- do not modify or reuse evidence from sibling worktrees;
+- temporary evidence goes to `{{EVIDENCE_ROOT}}/<task-id>/` unless explicitly overridden;
+- local configuration goes to `{{LOCAL_CONFIG_ROOT}}/`;
+- cleanup requires pushed commit, registered evidence, released ownership, recoverability, and `closure_owner` approval.
+
+### 6.4 Narrow stale-reference recovery
+
+A stale, unoccupied local branch may be aligned only after planning approval and proof that the frozen remote SHA is unchanged, the local branch has no unique commits and is its strict ancestor, no worktree/state/locks exist, and ownership is closed.
+
+Only this compare-and-set is allowed:
+
+```bash
+git update-ref refs/heads/<branch> <exact-new-sha> <exact-old-sha>
+```
+
+Failure remains `PAUSED_BRANCH_OWNERSHIP_CONFLICT`. Do not fall back to pull, merge, rebase, reset, checkout, stash, force, or `branch -f`.
+
+## 7. Parallel execution and integration
+
+Allowed parallel types:
+
+```text
+independent_long_lived_branch
+child_task_branch
+competitive_attempt
+read_only_audit
+not_applicable
+```
+
+Each Lane independently declares full capsule fields. A parallel group declares capacity, dependencies, shared resources, group pause triggers, and serial integration order.
+
+A Lane can enter integration only after accepted validation, pushed fixed commit, complete evidence, declared risk, and writer ownership release. A unique `integration_owner` owns the target branch, integrates one result at a time, validates after every step, and pauses on target movement, SHA mismatch, conflict, or failed gate. A competitive group selects one candidate and does not splice unaccepted candidates.
+
+## 8. States and handoff
+
+Supported states:
+
+```text
+ALLOCATED
+REMOTE_WRITING
+REMOTE_READY_FOR_LOCAL_VALIDATION
+LOCAL_WRITING
+WAITING_HUMAN_ACCEPTANCE
+LOCAL_ACCEPTED
+INTEGRATION
+CLOSED
+PAUSED_FOR_PLANNING_REVIEW
+PAUSED_PARALLEL_LANE
+PAUSED_PARALLEL_GROUP
+PAUSED_BRANCH_OWNERSHIP_CONFLICT
+```
+
+Remote-to-local handoff requires remote commit/push, remote-head verification, complete changed-file and validation report, and ownership release. Local receiver then fetches, verifies the exact SHA, clean worktree, unique branch occupancy, and ownership record before acquiring ownership.
+
+The same release/acquire sequence applies from local execution to remote review or integration. Do not skip commit, push, full-SHA verification, or ownership release.
+
+## 9. Stop budgets and blocker identity
+
+Defaults:
+
+```yaml
+same_blocker_attempt_budget: {{SAME_BLOCKER_ATTEMPT_BUDGET}}
+total_failed_recovery_budget: {{TOTAL_FAILED_RECOVERY_BUDGET}}
+no_progress_checkpoint_budget: {{NO_PROGRESS_CHECKPOINT_BUDGET}}
+reset_on_agent_change: false
+reset_on_model_change: false
+reset_on_session_change: false
+```
+
+The retry unit is a concrete blocker fingerprint:
+
+```yaml
+blocker_family:
+error_code:
+normalized_error_signature:
+operation:
+repository_role:
+canonical_repository_path:
+checkpoint_id:
+```
+
+First observation is diagnostic and does not automatically consume an attempt. An attempt requires a material corrective action, rerun of the corresponding checkpoint, new native evidence, and continued failure. Changing Agent, model, session, wording, or equivalent command does not reset or create a new blocker. Total failed recovery accumulates across blockers and execution sides.
+
+Pause when one blocker exhausts its budget, total failed recovery reaches its limit, or no-progress checkpoints reach the limit. Identity conflicts pause immediately outside ordinary retry accounting.
+
+## 10. Validation discipline
+
+Validation matches real impact:
+
+- L0: target content, links, status, markers, and final diff;
+- L1: deterministic reproduction/direct tests and necessary small regression;
+- L2: direct tests, necessary regression, and applicable real sample/file/visual/integration evidence;
+- L3: L2 plus release closure, artifact identity, lifecycle, real external service, device, or user acceptance.
+
+Primary validation:
 
 ```text
 {{TEST_COMMAND}}
@@ -159,99 +273,52 @@ Primary code root:
 {{CODE_ROOT}}
 ```
 
-Use the repository-controlled runtime or virtual environment when present. A system runtime missing test dependencies while the controlled runtime works is command-selection friction, not a product test failure. Do not install into the global environment merely to bypass the repository runtime.
+Use the repository-controlled runtime when present. A system runtime missing dependencies while the controlled runtime works is command-selection friction, not product failure. Do not install globally merely to bypass the controlled environment.
 
-For long-running commands, preserve and poll the same process until final exit. Do not start duplicate runs while the original process may still be active. Cross a gate only after receiving the native exit code and final summary.
+For long-running commands, preserve and poll the original process to native exit. Do not start duplicate runs while it may still be active. If visual proof is required, use actual visual evidence; structural checks supplement rather than silently replace it.
 
-Visual acceptance requires actual screenshots or an authorized visual tool when the task requires visual proof. DOM, static HTML, workbook structure, or text checks supplement rather than automatically replace visual review.
+## 11. External calls and irreversible actions
 
-## 8. Real external calls and irreversible actions
+Before any real Provider/external call, publication, deployment, deletion, migration, artifact replacement, credential change, or other irreversible action, close:
 
-Before a real Provider call, publication, package replacement, deletion, migration, credential change, or another irreversible action, close and record:
-
-- authoritative input paths and identities;
-- output path state and overwrite policy;
-- provider/model/endpoint or external target;
-- call count, retry, fallback, concurrency, and stop policy;
-- expected evidence and redaction boundary;
+- authoritative input/output identities;
+- exact target/model/endpoint;
+- explicit integer call/action budget;
+- retry, fallback, concurrency, and stop policy;
+- evidence and redaction boundary;
 - explicit authorization.
 
-If identity or authorization is incomplete, stop before the action. Do not perform the action first and reconstruct evidence later. A failed authorized run does not automatically authorize retries or parameter changes.
+If identity or authorization is incomplete, stop before acting. A failed authorized run does not authorize another call, changed parameters, fallback, or parallel call.
 
-## 9. Documents and planning-review triggers
+Shared resources declare mode, owner, acquire/release trigger, evidence, and conflict action. Provider identity/budget, visual or office-suite validation, formal release artifacts, governance files, integration target, and human-acceptance object commonly require exclusive or serialized access.
 
-Code tasks do not mechanically update plan documents. Update long-lived entries only when:
+## 12. Document and evidence discipline
 
-- task, branch, or phase status changes;
-- immediate next task or route changes;
-- product scope, architecture, formal specification, or support boundary changes;
-- repository-level governance changes;
-- formal version, artifact, or historical identity changes;
-- the capsule explicitly requires a retained long-term conclusion.
+Code changes do not mechanically update plans. Update long-lived documents only when task/branch/phase state, route, next task, product boundary, formal specification, governance, version, or artifact identity changes.
 
-One-time commands, tests, artifacts, and run facts belong in Git, test output, `.tmp/<task-id>/`, and the execution report.
+One-time commands, tests, Provider calls, artifacts, and run facts belong in Git, test output, `{{EVIDENCE_ROOT}}/<task-id>/`, and execution reports.
 
-Planning review is mandatory for:
+Retain local evidence across tasks only when an authorized downstream task explicitly depends on it. Record path, identity, provenance, downstream reader/purpose, and cleanup condition. Missing or provenance-broken evidence blocks the downstream task and is not silently replaced.
 
-- product, architecture, specification, support, governance, or branch-objective change;
-- unauthorized long-lived branch creation or cross-branch merge;
-- phase, branch, formal version, or release closure;
-- an execution task that must break its approved boundary.
+## 13. Reporting and governance feedback
 
-A capsule may authorize branch creation within one L2 local task when source, target, and scope are already approved. Passing L1/L2 work does not require a separate ceremonial closure review unless a higher-level boundary or route changes.
+Every write task reports full source SHA, task branch, completed commit, push, current state, writer ownership release, final remote head, and final worktree status.
 
-## 10. Governance iteration
+Every local task separately reports:
 
-Execution reports may identify blockers, friction, and improvement ideas, but suggestions do not automatically become rules or implementation authorization.
+- task-result blocker;
+- execution-process blocker;
+- non-blocking friction;
+- whether the issue repeats;
+- whether current rules are sufficient;
+- whether the recommendation is a capsule fix, governance review, or approved tool task.
 
-Process governance feedback in this order:
+An executor reports facts and recommendations only. It does not self-authorize governance, scope, architecture, specification, version, budget, or Lane-limit changes.
 
-1. determine whether the capsule, path, command, evidence directory, or execution method was wrong, or an existing rule was ignored; fix the task first and do not duplicate rules;
-2. only when a repeated cross-task rule is missing or must change, perform planning review and update formal governance plus this file when necessary;
-3. implement approved tools, scripts, tests, or checks as a local task;
-4. when remote write capability is insufficient or rule and implementation must be atomic, the capsule may combine them only after the governance decision is fixed.
-
-Governance investment must remain necessary, simple, and worth its cost. One mistake does not justify a general platform, complex state machine, universal parser, or preventive gate for every low-probability failure.
-
-## 11. Evidence retention and handoff
-
-Only local evidence required by an already-authorized downstream task must be retained across tasks. The producing task must record:
-
-- exact path;
-- file identity or SHA256 when material;
-- source relationship;
-- downstream reader and purpose;
-- cleanup or release condition.
-
-Before the downstream task, recheck existence and identity. Missing or provenance-broken evidence blocks the task. Do not replace it with a new Provider call, random generation, or files assembled from different sources.
-
-## 12. Completion report and process-blockage assessment
-
-Every local task, whether complete or blocked, must separate task result from execution-process issues.
-
-At minimum report:
-
-1. Git summary;
-2. modified files and behavior;
-3. validation commands and results;
-4. artifacts and retained evidence;
-5. triggered specification, plan, governance, or version updates;
-6. incomplete items and next recommendation;
-7. final worktree state;
-8. process-blockage assessment.
-
-Process-blockage assessment must distinguish:
-
-- task-result blocker: behavior, test, or acceptance failed;
-- execution-process blocker: environment or method prevented continuation;
-- non-blocking friction: stable fallback existed and valid results were obtained.
-
-State whether the issue repeats, whether existing rules are sufficient, and whether the recommendation is a capsule fix, repository-discipline change, or approved local-tool implementation. The local Agent reports facts and recommendations; it does not self-authorize governance changes.
-
-## 13. Data and security
+## 14. Data and security
 
 - Primary documentation language: `{{PRIMARY_LANGUAGE}}`.
 - Code identifiers, schema keys, and CLI parameters may use English.
-- Do not commit secrets, credentials, unredacted private materials, raw sensitive Provider requests/responses, or sensitive logs.
+- Do not commit secrets, credentials, unredacted private material, raw sensitive Provider requests/responses, or sensitive logs.
 - Historical tests and artifacts prove only their corresponding version and path.
 - Do not modify expected artifacts to hide unapproved behavior changes.
